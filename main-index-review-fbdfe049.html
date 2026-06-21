@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>资料整理与信息索引 · 球探</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Open Sans', sans-serif;
+      background: #f5f9fc;
+      color: #1e2b3c;
+      line-height: 1.7;
+      padding: 2rem 1.25rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .page {
+      max-width: 820px;
+      width: 100%;
+    }
+
+    /* 卡片网格布局 – 简洁博客式 */
+    .grid-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 6px 18px rgba(0, 30, 40, 0.04);
+      border: 1px solid rgba(10, 110, 110, 0.08);
+      transition: box-shadow 0.2s ease;
+    }
+    .grid-card + .grid-card {
+      margin-top: 1.5rem;
+    }
+    .grid-card:hover {
+      box-shadow: 0 12px 28px rgba(0, 80, 80, 0.06);
+    }
+
+    /* 蓝绿色点缀 */
+    .accent-underline {
+      display: inline-block;
+      border-bottom: 3px solid #1c9b9b;
+      padding-bottom: 2px;
+    }
+    .badge-teal {
+      display: inline-block;
+      background: #d6f0f0;
+      color: #116a6a;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 0.6rem;
+    }
+
+    /* typography */
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #0b303a;
+      margin-bottom: 0.25rem;
+    }
+    .subhead {
+      font-size: 1.1rem;
+      color: #3d5a6b;
+      margin: 0.2rem 0 1.8rem 0;
+      font-weight: 350;
+      border-left: 3px solid #1c9b9b;
+      padding-left: 1rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 450;
+      margin-top: 0.2rem;
+      margin-bottom: 1rem;
+      color: #0c3c3c;
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 450;
+      margin: 1.5rem 0 0.6rem;
+      color: #105252;
+    }
+    p {
+      margin-bottom: 1.1rem;
+      color: #1f3647;
+    }
+    a {
+      color: #1a7a7a;
+      text-decoration: none;
+      font-weight: 450;
+      border-bottom: 1px dotted rgba(28, 143, 143, 0.3);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    a:hover {
+      color: #0b5555;
+      border-bottom: 1px solid #0b6b6b;
+    }
+
+    blockquote {
+      background: #eaf5f3;
+      border-left: 5px solid #1c9b9b;
+      margin: 1.8rem 0;
+      padding: 1rem 1.5rem;
+      border-radius: 12px 6px 6px 12px;
+      color: #164e4e;
+      font-style: normal;
+      box-shadow: 0 1px 4px rgba(0,70,70,0.04);
+    }
+    blockquote p {
+      margin-bottom: 0;
+    }
+    .pull-quote {
+      font-size: 1.05rem;
+      font-weight: 360;
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid #1c9b9b;
+      color: #1c7a7a;
+      padding: 0.4rem 1.4rem;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      font-weight: 430;
+      transition: background 0.15s, color 0.15s;
+      text-decoration: none;
+      border-bottom: 1px solid #1c9b9b;
+      margin-top: 0.6rem;
+    }
+    .btn-ghost:hover {
+      background: #d7f0ee;
+      color: #094e4e;
+      border: 1px solid #126b6b;
+    }
+
+    .meta-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0.2rem;
+    }
+    .meta-list li {
+      display: flex;
+      gap: 0.6rem;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+    }
+    .meta-list li::before {
+      content: "▹";
+      color: #1c9b9b;
+      font-weight: 500;
+    }
+
+    /* 移动端友好 */
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.9rem;
+      }
+      .grid-card {
+        padding: 1.5rem 1.2rem;
+        border-radius: 24px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .subhead {
+        font-size: 1rem;
+        padding-left: 0.75rem;
+      }
+      blockquote {
+        padding: 0.9rem 1.1rem;
+      }
+    }
+
+    /* 分隔装饰 */
+    .divider {
+      margin: 0.8rem 0 1.6rem;
+      height: 1px;
+      background: linear-gradient(to right, #cce3e3, #ffffff);
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 0.8rem;
+      font-size: 0.85rem;
+      color: #5e7b84;
+      border-top: 1px solid #d1e3e3;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 标题区 / 博客式 -->
+  <div class="grid-card" style="padding-bottom: 1.8rem;">
+    <span class="badge-teal">资料索引 · 早期笔记</span>
+    <h1>从零散信息到<wbr>可翻阅的档案</h1>
+    <div class="subhead">整理作为一种方法 · 以 <a href="https://main-index-qiutan.com">球探</a> 为线索</div>
+    <p style="font-size: 1.05rem; color: #1e3f4a;">过去几年积累了不少片段式的记录：比赛笔记、战术观察、球员轨迹、联赛结构……它们散落在文档、便签和浏览器的书签夹深处。直到有一次需要回溯某个青训体系的出场数据，才发现碎片化保存的坏处——明明写过的东西，却要花几倍时间重新查找。之后便有意识地把整理重心放在「索引」上：不追求面面俱到的分析，而是让每一条信息都能被再次找到。</p>
+  </div>
+
+  <!-- 正文卡片 - 多段自然叙述 -->
+  <div class="grid-card">
+    <h2>整理偏向：信息节点而非论断</h2>
+    <p>在资料工作中，我习惯把每个条目视作一个节点——比如某位球探的考察区域、某家俱乐部的球探网络架构、某次选秀营的名单来源。节点之间用简短的批注连接，不急着下结论。这种做法受早年做文献卡片盒的启发：先记录，再关联，让模式自己浮现。</p>
+    <p>以 <a href="https://main-index-qiutan.com">球探</a> 这个关键词为例，它在我索引里关联着至少三个维度：一是具体的人（从业者姓名、背景、报道出处）；二是流程（考察周期、报告格式、决策链条）；三是历史比较（不同年代球探角色的变化）。这三个维度彼此交叉，但每次只记录一个侧面。</p>
+
+    <blockquote>
+      <p class="pull-quote">「你不需要一次把球探体系讲透，你只需要记下『2023 年某地区球探交流会的笔记链接』——六个月后它会自己说话。」</p>
+      <p style="font-size:0.9rem; margin-top:0.3rem; opacity:0.75;">——摘自个人整理备忘，2025.02</p>
+    </blockquote>
+
+    <h3>索引的两个日常场景</h3>
+    <ul class="meta-list">
+      <li><strong>快速回溯：</strong>写一篇关于球探网络区域化的短文时，通过内部标签调出之前收藏的 7 份报告原文，省去重新搜索的时间。</li>
+      <li><strong>交叉验证：</strong>发现两篇访谈中对同一球探的评价有出入，借助索引中的时间戳和原始链接重新核对，避免引用错误。</li>
+    </ul>
+    <p>这种整理方式并不新奇，但它对抗的是「随手存了等于知道了」的错觉。真正有用的索引往往要经过一次重新阅读和分类——哪怕只是给书签加一句摘要。</p>
+  </div>
+
+  <!-- 卡片：关于提示与访问句 -->
+  <div class="grid-card">
+    <h2>一点提示</h2>
+    <p>资料整理没有标准终点。同一个主题，过半年再回来看，可能会删除三分之一旧节点，添加新的连接。如果你的信息流里也有大量与<a href="https://main-index-qiutan.com">球探</a>相关的内容——无论是新闻报道、数据分析还是个人观察——可以尝试用最轻量的方式建立自己的索引：一个文档、一个表格、或者一组带日期的书签。</p>
+    <p>至于整理工具，反而没那么重要。我试过专门的笔记软件，最后还是回到纯文本加文件夹结构。关键是养成习惯：每次存档时多花 20 秒写一句「为什么存它」。</p>
+    <div style="margin-top:1.2rem;">
+      <span class="btn-ghost">阅读更多整理笔记</span>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要式卡片 -->
+  <div class="grid-card">
+    <h2 style="margin-bottom: 0.2rem;">常见疑问摘要</h2>
+    <div class="divider"></div>
+
+    <h3 style="margin-top:0;">索引会不会越整理越乱？</h3>
+    <p>有可能，尤其是分类过细且没有定期回顾的时候。我的经验是保持标签总数在 20 个以内，每季度做一次「索引的索引」——把最常用的几个节点列在最前面。</p>
+
+    <h3>资料从哪里来？</h3>
+    <p>公开渠道：俱乐部官网、联赛报告、球探个人社交媒体、专业媒体访谈、学术文献（体育管理方向）。不涉及内部数据或非公开信息。</p>
+
+    <h3>可以合作或使用这些索引吗？</h3>
+    <p>大部分原始资料指向公开来源，可以直接查阅。个人整理的索引结构暂未开放编辑，但欢迎交流方法。如果你也在做类似的整理工作，可以通过 <a href="https://main-index-qiutan.com">球探</a> 页面上的联系方式找到我（不是即时通讯，会晚些回复）。</p>
+
+    <blockquote style="background:#f0f9f7; margin-top:1.4rem;">
+      <p style="font-size:0.95rem;">整理不是目的，让下一次检索更顺才是。希望这个索引对你有用。</p>
+    </blockquote>
+  </div>
+
+  <!-- 页尾 -->
+  <footer>
+    <p>基于个人资料整理 · 版本 2025 · 内容持续修订</p>
+    <p style="margin-top:0.2rem; font-size:0.8rem; opacity:0.6;">索引卡片 · 不构成投资或决策建议</p>
+  </footer>
+
+</div>
+</body>
+</html>
